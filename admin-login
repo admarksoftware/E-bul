@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Son Panel - Son Yazılım Gelişmiş Yönetim Sistemi</title>
+        <title>E-Bul Admin</title>
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/genel/31711.jpg">
         <link href="assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/lib/sweet-alerts2/sweetalert2.min.css" rel="stylesheet">
