@@ -1,0 +1,788 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-Bul Admin Paneli</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/genel/31711.jpg">
+    <script src="../ckeditor/ckeditor.js"></script>
+    <script src="assets/js/alert.js"></script>
+
+    <!-- DropZone -->
+    <link rel="stylesheet" href="assets/dropzone/dropzone.css" />
+    <link rel="stylesheet" href="assets/dropzone/dropzone.min.css" />
+
+
+    <link href="assets/lib/lightbox2/dist/css/lightbox.css" rel="stylesheet">
+
+    <!-- Common Plugins -->
+    <link href="assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Sweet Alerts -->
+    <link href="assets/lib/sweet-alerts2/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- Summernote -->
+    <link href="assets/lib/summernote/summernote.css" rel="stylesheet">
+    <link href="assets/lib/summernote/summernote-bs3.css" rel="stylesheet">
+
+    <!-- Vector Map Css-->
+    <link href="assets/lib/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+
+    <!-- DataTables -->
+    <link href="assets/lib/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/lib/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/lib/toast/jquery.toast.min.css" rel="stylesheet">
+    <link href="assets/lib/datatables/buttons.dataTables.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom Css-->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body><div class="top-bar light-top-bar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <a class="admin-logo" href="index.php">
+                    <h1>
+                        <img alt="" src="assets/img/genel/logo.png" class="logo-icon margin-r-10">
+                        <img alt="" src="assets/img/genel/logo-text.png" class="toggle-none hidden-xs">
+                    </h1>
+                </a>
+                <div class="left-nav-toggle">
+                    <a href="#" class="nav-collapse"><i class="fa fa-bars"></i></a>
+                </div>
+                <div class="left-nav-collapsed">
+                    <a href="#" class="nav-collapsed"><i class="fa fa-bars"></i></a>
+                </div>
+            </div>
+            <div class="col">
+                                <ul class="list-inline top-right-nav">
+                    <li class="dropdown icon-dropdown d-none-m">
+                        <a class="dropdown-toggle " data-toggle="dropdown" href="#"><i class="fa fa-envelope"></i> <span
+                                class="badge badge-warning">0</span></a>
+                        <ul class="dropdown-menu top-dropdown lg-dropdown notification-dropdown">
+                            <li>
+                                <div class="dropdown-header">
+                                    <a class="pull-right text-muted" href="gelen-mesajlar.php"><small>Tümü</small></a> Gelen Mesajlar
+                                </div>
+                                <div class="scrollDiv">
+                                    <div class="notification-list">
+                                                                                <a style="padding: 6px 12px 6px 6px;" class="clearfix">
+                                            <span class="notification-title">
+                                                <p style="margin-left: 10px;margin-top: 12px;">Hiç Yeni Mesajınız Yok!</p>
+                                            </span>
+                                        </a>
+                                                                            </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                                        <li class="dropdown icon-dropdown d-none-m">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-bell"></i> <span class="badge badge-danger">10</span></a>
+                        <ul class="dropdown-menu top-dropdown lg-dropdown notification-dropdown">
+                            <li>
+                                <div class="dropdown-header">
+                                    Bildirimler
+                                </div>
+                                <div class="scrollDiv">
+                                    <div class="notification-list">
+                                        <a class="clearfix" href="ilanlar.php?status=bekleyen">
+                                            <span class="notification-icon">
+                                                <i class="fa fa-thumbs-o-up text-primary"></i>
+                                            </span>
+                                            <span class="notification-title">Onay Bekleyen İlanlar <b>(2)</b></span>
+                                            <span class="notification-description">Onay verilmeyi bekleyen ilanları kontrol edip yayına almalısınız!</span>
+                                        </a>
+                                        <a class="clearfix" href="siparisler.php?status=onaybekleyen">
+                                            <span class="notification-icon">
+                                                <i class="fa fa-shopping-cart text-danger"></i>
+                                            </span>
+                                            <span class="notification-title">Bekleyen Yeni Siparişler <b>(1)</b></span>
+                                            <span class="notification-description">Üyelerinizin tamamlamadığı satın alma işlemleri.</span>
+                                        </a>
+                                        <a class="clearfix" href="bakiye-islemleri.php">
+                                            <span class="notification-icon">
+                                                <i class="fa fa-try text-warning"></i>
+                                            </span>
+                                            <span class="notification-title">Bekleyen Bakiye İşlemleri <b>(2)</b></span>
+                                            <span class="notification-description">Üyeler tarafından yapılan onay bekleyen bakiye ödemeleri!</span>
+                                        </a>
+                                        <a class="clearfix" href="yorumlar.php">
+                                            <span class="notification-icon">
+                                                <i class="fa fa-comment-o text-success"></i>
+                                            </span>
+                                            <span class="notification-title">Onay Bekleyen Yorumlar <b>(5)</b></span>
+                                            <span class="notification-description">İlanlara yapılan yorumlar onay vermeden yayınlanmaz. </span>
+                                        </a>
+                                        <a class="clearfix" href="pgsler.php?status=odenmemis">
+                                            <span class="notification-icon">
+                                                <i class="fa fa-shield text-secondary"></i>
+                                            </span>
+                                            <span class="notification-title">Ödeme Bekleyen PGS'ler <b>(0)</b></span>
+                                            <span class="notification-description">Tamamlanan ve ödenmeyen PGS ticaretleri. </span>
+                                        </a>
+                                        <a class="clearfix" href="degerlendirmeler.php">
+                                            <span class="notification-icon">
+                                                <i class="fa fa-check text-warning"></i>
+                                            </span>
+                                            <span class="notification-title">Onay Bekleyen Değerlendirmeler <b>(0)</b></span>
+                                            <span class="notification-description">Onay bekleyen satıcı değerlendirmeleri. </span>
+                                        </a>
+                                        <a class="clearfix bildirimsil" data-id="" >
+                                            <span class=" notification-icon">
+                                                <i class="fa fa-question-circle text-warning"></i>
+                                            </span>
+                                            <span class="notification-title">PGS Mesajlari <b>(0)</b></span>
+                                            <span class=" notification-description">Pgs Ticaretleri için Müşteri Temsilcisi Mesajlarını Görebilirsiniz. </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown icon-dropdown d-none-m">
+                        <a href="genel-ayarlar.php"><i class="icon-settings"></i></a>
+                    </li>
+                    <li class="dropdown avtar-dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <img alt="" class="rounded-circle" src="assets/img/genel/28464.jpg" width="30">
+                        </a>
+                        <ul class="dropdown-menu top-dropdown">
+                            <li>
+                                <a class="dropdown-item" href="user.php"><i class="icon-user"></i> Profil</a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="logout.php"><i class="icon-logout"></i> Güvenli Çıkış</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div><div class="main-sidebar-nav default-navigation">
+    <div class="nano">
+        <div class="nano-content sidebar-nav">
+            <ul class="metisMenu nav flex-column" id="menu">
+                <div class="card-block border-bottom text-center nav-profile">
+                    <img alt="profile" class="rounded-circle margin-b-10 circle-border " src="assets/img/genel/28464.jpg" width="80">
+                    <p class="lead margin-b-0 toggle-none"><small>sayın<br>
+                        </small>E-Bul</p>
+                    <p class="text-muted mv-0 toggle-none">Hoşgeldiniz</p>
+                </div>
+                <li class="nav-heading">
+                    <b>Menü</b>
+                </li>
+                <li class="nav-item "><a class="nav-link" href="index.php"><i class="icon-home"></i> <span class="toggle-none">Panel Anasayfa </a></li>
+                <li class="nav-item">
+                    <a class="nav-link" target="_blank" href="aegirsoft.com../">
+                        <i class="icon-link"></i>
+                        <span class="toggle-none">Siteye Git </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="javascript: void(0);" aria-expanded="true">
+                        <i class="icon-user"></i>
+                        <span class="toggle-none">Üye Yönetimi<span style="float: right;" class="fa fa-angle-down"></span></span>
+                    </a>
+                    <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="true">
+                        <li class="nav-item"><a class="nav-link" href="uyeler.php">Üyeler</a></li>
+                        <li class="nav-item"><a class="nav-link" href="uye-ayarlari.php">Üyelik Ayarları</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="javascript: void(0);" aria-expanded="true"><i class="fa fa-money"></i>
+                        <span class="toggle-none">Sipariş & Ödemeler<span style="float: right;" class="fa fa-angle-down"></span></span></a>
+                    <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="true">
+                        <li class="nav-item"><a class="nav-link" href="siparisler.php">Sipariş Yönetimi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pgsler.php">PGS Yönetimi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="bakiye-islemleri.php">Bakiye İşlemleri</a></li>
+                        <li class="nav-item"><a class="nav-link" href="degerlendirmeler.php">Degerlendirmeler</a></li>
+                        <li class="nav-item"><a class="nav-link" href="odeme-ayarlari.php">Ödeme Ayarları</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="javascript: void(0);" aria-expanded="true"><i class="icon-grid"></i> <span class="toggle-none">Kategori Yönetimi<span style="float: right;" class="fa fa-angle-down"></span></span></a>
+                    <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="true">
+                        <li class="nav-item"><a class="nav-link" href="ana-kategoriler.php">Ana Kategori Yönetimi</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="alt-kategoriler.php">Alt Kategori Yönetimi</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="secenekler.php">Seçenek Yönetimi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="ozellik-basliklari.php">Özellik Başlıkları</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="ozellikler.php">Özellik Yönetimi</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="ilanlar.php">
+                        <i class="fa fa-bullhorn"></i>
+                        <span class="toggle-none">İlan Yönetimi</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="" aria-expanded="true"><i class="fa fa-newspaper-o"></i> <span class="toggle-none">İçerik Yönetimi<span style="float: right;" class="fa fa-angle-down"></span></span></a>
+                    <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="true">
+                        <li class="nav-item"><a class="nav-link" href="blog.php">Blog Yönetimi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="sayfalar.php">Sayfa Yönetimi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gelen-mesajlar.php">Gelen Mesajlar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="yorumlar.php">Yorum Yönetimi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="hesaplarim.php">Banka Hesaplarimiz</a></li>
+                        <li class="nav-item"><a class="nav-link" href="sss.php">Sık Sorulan Sorular</a></li>
+                        <li class="nav-item"><a class="nav-link" href="bilgiler.php">Bilgi Yönetimi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="sosyal-medya.php">Sosyal Medya Yönetimi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="sozlesmeler.php">Sözleşme Yönetimi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cerez-yonetimi.php">Çerez Yönetimi</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="" aria-expanded="true"><i class="icon-list"></i>
+                        <span class="toggle-none">Menü Yönetimi
+                            <span style="float: right;" class="fa fa-angle-down"></span>
+                        </span>
+                    </a>
+                    <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="true">
+                        <li class="nav-item"><a class="nav-link" href="menu.php">Üst Menü Yönetimi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="alt-menu.php">Alt Menü</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="modul.php"><i class="icon-puzzle"></i>
+                        <span class="toggle-none">Modül Yönetimi </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="mobil-uygulama-yonetimi.php"><i class="icon-puzzle"></i>
+                        <span class="toggle-none">Mobil Uygulama Yönetimi </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="counter.php"><i class="fa fa-sort-numeric-desc"></i>
+                        <span class="toggle-none">Counter Yönetimi </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="reklam-ayarlari.php"><i class="icon-star"></i>
+                        <span class="toggle-none">Reklam Yönetimi </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="seo.php"><i class="icon-rocket"></i>
+                        <span class="toggle-none">Seo Yönetimi
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="guncellemeler.php"><i class="fa fa-spinner"></i>
+                        <span class="toggle-none text-danger">Sistem Güncellemeleri </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="genel-ayarlar.php"><i class="icon-wrench"></i>
+                        <span class="toggle-none">Site Ayarları </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div><section class="main-content container">
+    <div class="page-header">
+        <h2>İlan İşlemleri </h2>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mb-3">
+                <a href="ilanlar.php" class="btn btn-primary" name="filtre" value="ARA" type="submit">Tüm
+                    İlanlar</a>
+                <a href="?status=tamamlanmamis" class="btn btn-secondary" name="filtre" value="ARA" type="submit">
+                    Tamamlanmamis İlanlar</a>
+                <a href="?status=bekleyen" class="btn btn-secondary" name="filtre" value="ARA" type="submit">Onay
+                    Bekleyen İlanlar</a>
+                <a href="?status=onayli" class="btn btn-secondary" name="filtre" value="ARA" type="submit">Onaylı
+                    İlanlar</a>
+                <a href="?status=red" class="btn btn-secondary" name="filtre" value="ARA" type="submit">Reddedilen İlanlar</a>
+                <a href="?status=sure" class="btn btn-secondary" name="filtre" value="ARA" type="submit">Süresi Dolan
+                    İlanlar</a>
+                <a href="?status=pgs" class="btn btn-secondary" name="filtre" value="ARA" type="submit">PGS İlanları</a>
+                <a href="?status=avitrin" class="btn btn-secondary" name="filtre" value="ARA" type="submit">Anasayfa
+                    Vitrin İlanları</a>
+                <a href="?status=kvitrin" class="btn btn-secondary" name="filtre" value="ARA" type="submit">Kategori
+                    Vitrin İlanları</a>
+                <a href="?status=onecikan" class="btn btn-secondary" name="filtre" value="ARA" type="submit">Öne Çıkan
+                    İlanlar</a>
+            </div>
+            <div class="card">
+                <div class="card-heading card-default">
+                    Tüm İlanlar <small>(736 - Adet İlan)</small>
+                    <div style="margin-top: 10px;">
+                        <form action="" method="get">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-12">
+                                                                        <input type="text" name="kelime"  placeholder="Kelime giriniz"
+                                        >
+                                    <button style="cursor: pointer;margin-top: 10px; width: 100%" class="btn btn-success" value="ARA" type="submit">Filtrele</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-block">
+                    <table class="table table-dark" id="tableIlan">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    <strong>İlan Resim</strong>
+                                </th>
+                                <th class="text-left">
+                                    <strong>Siralama & Ekleme Tarihi</strong>
+                                </th>
+                                <th class="text-center">
+                                    <strong>İlan Durum</strong>
+                                </th>
+                                <th class="text-left">
+                                    <strong>İlan Başlık</strong>
+                                </th>
+                                </th>
+                                <th class="text-center">
+                                    <strong>Fiyat</strong>
+                                </th>
+                                <th class="text-center">
+                                    <strong>İşlemler</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                                        <tr>
+                                <td class="text-center">
+                                                                        <img style="height: 40px;width: auto;" src="/../assets/img/ilan/21/09/thumbs_grid/23-23368.webp"
+                                        onError="this.src='../assets/img/genel/thumbs-grid-noimageall.webp';">
+                                                                    </td>
+                                <td>2021-09-02 15:05:55<br><small>2021-09-02 15:05:55</small></td>
+                                <td class="text-center">
+                                                                        <span class="badge badge-success" style="font-size: 12px;"> Onaylı</span>
+                                                                    </td>
+                                <td>2 yaşında dişi kedi <br> <small>Hayvanlar Alemi /                                                                                                                        Evcil Hayvanlar                                        /
+                                                                                                                        Kedi                                        </small></td>
+                                <td class="text-center">₺2,500.0</td>
+                                <td class="text-center">
+                                    <form action="" method="POST">
+                                        <a target="_balnk" href="../ilan-detay/736/2-yasinda-disi-kedi" title="Göster" class="btn btn-sm btn-warning"><i
+                                                class="fa fa-external-link"></i></a>
+                                        <a href="ilan-duzenle.php?ilan_id=736" title="Düzenle" class="btn btn-sm btn-success"><i
+                                                class="fa fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="736">
+                                        <input type="hidden" name="sayfa" value="ilanlar.php">
+                                        <button class="btn btn-sm btn-danger" type="submit" name="ilansil" title="Sil" style="cursor: pointer;"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-center">
+                                                                        <img style="height: 40px;width: auto;" src="../assets/img/ilan/21/09/thumbs_grid/22-29385.webp"
+                                        onError="this.src='../assets/img/genel/thumbs-grid-noimageall.webp';">
+                                                                    </td>
+                                <td>2021-09-02 15:05:55<br><small>2021-09-02 15:05:55</small></td>
+                                <td class="text-center">
+                                                                        <span class="badge badge-success" style="font-size: 12px;"> Onaylı</span>
+                                                                    </td>
+                                <td>Yarış Atı <br> <small>Hayvanlar Alemi /                                                                                                                        Büyükbaş Hayvanlar                                        /
+                                                                                                                        At                                        </small></td>
+                                <td class="text-center">₺69,000.0</td>
+                                <td class="text-center">
+                                    <form action="" method="POST">
+                                        <a target="_balnk" href="../ilan-detay/735/yaris-ati" title="Göster" class="btn btn-sm btn-warning"><i
+                                                class="fa fa-external-link"></i></a>
+                                        <a href="ilan-duzenle.php?ilan_id=735" title="Düzenle" class="btn btn-sm btn-success"><i
+                                                class="fa fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="735">
+                                        <input type="hidden" name="sayfa" value="ilanlar.php">
+                                        <button class="btn btn-sm btn-danger" type="submit" name="ilansil" title="Sil" style="cursor: pointer;"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-center">
+                                                                        <img style="height: 40px;width: auto;" src="../assets/img/ilan/21/09/thumbs_grid/21-24748.webp"
+                                        onError="this.src='../assets/img/genel/thumbs-grid-noimageall.webp';">
+                                                                    </td>
+                                <td>2021-09-02 15:05:55<br><small>2021-09-02 15:05:55</small></td>
+                                <td class="text-center">
+                                                                        <span class="badge badge-success" style="font-size: 12px;"> Onaylı</span>
+                                                                    </td>
+                                <td>Makinalar dahill 10.000 M2 fabrika <br> <small>Emlak /                                                                                İşyeri                                        /
+                                                                                                                        Satılık                                        /
+                                                                                                                        Fabrika                                         </small></td>
+                                <td class="text-center">₺79,000,000.0</td>
+                                <td class="text-center">
+                                    <form action="" method="POST">
+                                        <a target="_balnk" href="../ilan-detay/734/makinalar-dahill-10-000-m2-fabrika" title="Göster" class="btn btn-sm btn-warning"><i
+                                                class="fa fa-external-link"></i></a>
+                                        <a href="ilan-duzenle.php?ilan_id=734" title="Düzenle" class="btn btn-sm btn-success"><i
+                                                class="fa fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="734">
+                                        <input type="hidden" name="sayfa" value="ilanlar.php">
+                                        <button class="btn btn-sm btn-danger" type="submit" name="ilansil" title="Sil" style="cursor: pointer;"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-center">
+                                                                        <img style="height: 40px;width: auto;" src="../assets/img/ilan/21/09/thumbs_grid/20-29147.webp"
+                                        onError="this.src='../assets/img/genel/thumbs-grid-noimageall.webp';">
+                                                                    </td>
+                                <td>2021-09-02 15:05:55<br><small>2021-09-02 15:05:55</small></td>
+                                <td class="text-center">
+                                                                        <span class="badge badge-success" style="font-size: 12px;"> Onaylı</span>
+                                                                    </td>
+                                <td>Kiralık Müsatkil Ev <br> <small>Emlak /                                                                                Konut                                        /
+                                                                                                                        Kiralık                                        /
+                                                                                                                        Müstakil Ev                                        </small></td>
+                                <td class="text-center">₺4,500.0</td>
+                                <td class="text-center">
+                                    <form action="" method="POST">
+                                        <a target="_balnk" href="../ilan-detay/733/kiralik-musatkil-ev" title="Göster" class="btn btn-sm btn-warning"><i
+                                                class="fa fa-external-link"></i></a>
+                                        <a href="ilan-duzenle.php?ilan_id=733" title="Düzenle" class="btn btn-sm btn-success"><i
+                                                class="fa fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="733">
+                                        <input type="hidden" name="sayfa" value="ilanlar.php">
+                                        <button class="btn btn-sm btn-danger" type="submit" name="ilansil" title="Sil" style="cursor: pointer;"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-center">
+                                                                        <img style="height: 40px;width: auto;" src="../assets/img/ilan/21/09/thumbs_grid/19-28884.webp"
+                                        onError="this.src='../assets/img/genel/thumbs-grid-noimageall.webp';">
+                                                                    </td>
+                                <td>2021-09-02 15:05:55<br><small>2021-09-02 15:05:55</small></td>
+                                <td class="text-center">
+                                                                        <span class="badge badge-success" style="font-size: 12px;"> Onaylı</span>
+                                                                    </td>
+                                <td>Ucuz ev Temizliği <br> <small>Yardımcı Arayanlar /                                                                                                                                                                 Temizlikçi & Ev İşlerine Yardımcı                                        </small></td>
+                                <td class="text-center">₺150.0</td>
+                                <td class="text-center">
+                                    <form action="" method="POST">
+                                        <a target="_balnk" href="../ilan-detay/732/ucuz-ev-temizligi" title="Göster" class="btn btn-sm btn-warning"><i
+                                                class="fa fa-external-link"></i></a>
+                                        <a href="ilan-duzenle.php?ilan_id=732" title="Düzenle" class="btn btn-sm btn-success"><i
+                                                class="fa fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="732">
+                                        <input type="hidden" name="sayfa" value="ilanlar.php">
+                                        <button class="btn btn-sm btn-danger" type="submit" name="ilansil" title="Sil" style="cursor: pointer;"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-center">
+                                                                        <img style="height: 40px;width: auto;" src="../assets/img/ilan/21/09/thumbs_grid/18-24674.webp"
+                                        onError="this.src='../assets/img/genel/thumbs-grid-noimageall.webp';">
+                                                                    </td>
+                                <td>2021-09-02 15:05:55<br><small>2021-09-02 15:05:55</small></td>
+                                <td class="text-center">
+                                                                        <span class="badge badge-success" style="font-size: 12px;"> Onaylı</span>
+                                                                    </td>
+                                <td>Profesyonel Çoçuk Bakım Hizmeti <br> <small>Yardımcı Arayanlar /                                                                                                                                                                Bebek & Çocuk Bakıcısı                                         </small></td>
+                                <td class="text-center">₺7,500.0</td>
+                                <td class="text-center">
+                                    <form action="" method="POST">
+                                        <a target="_balnk" href="../ilan-detay/731/profesyonel-cocuk-bakim-hizmeti" title="Göster" class="btn btn-sm btn-warning"><i
+                                                class="fa fa-external-link"></i></a>
+                                        <a href="ilan-duzenle.php?ilan_id=731" title="Düzenle" class="btn btn-sm btn-success"><i
+                                                class="fa fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="731">
+                                        <input type="hidden" name="sayfa" value="ilanlar.php">
+                                        <button class="btn btn-sm btn-danger" type="submit" name="ilansil" title="Sil" style="cursor: pointer;"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-center">
+                                                                        <img style="height: 40px;width: auto;" src="../assets/img/ilan/21/09/thumbs_grid/17-26597.webp"
+                                        onError="this.src='../assets/img/genel/thumbs-grid-noimageall.webp';">
+                                                                    </td>
+                                <td>2021-09-02 15:05:55<br><small>2021-09-02 15:05:55</small></td>
+                                <td class="text-center">
+                                                                        <span class="badge badge-success" style="font-size: 12px;"> Onaylı</span>
+                                                                    </td>
+                                <td>Uzman Yaşlı Bakım Hizmeti <br> <small>Yardımcı Arayanlar /                                                                                                                                                                 Yaşlı & Hasta Bakıcısı                                         </small></td>
+                                <td class="text-center">₺2,500.0</td>
+                                <td class="text-center">
+                                    <form action="" method="POST">
+                                        <a target="_balnk" href="../ilan-detay/730/uzman-yasli-bakim-hizmeti" title="Göster" class="btn btn-sm btn-warning"><i
+                                                class="fa fa-external-link"></i></a>
+                                        <a href="ilan-duzenle.php?ilan_id=730" title="Düzenle" class="btn btn-sm btn-success"><i
+                                                class="fa fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="730">
+                                        <input type="hidden" name="sayfa" value="ilanlar.php">
+                                        <button class="btn btn-sm btn-danger" type="submit" name="ilansil" title="Sil" style="cursor: pointer;"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-center">
+                                                                        <img style="height: 40px;width: auto;" src="../assets/img/ilan/21/09/thumbs_grid/16-23069.webp"
+                                        onError="this.src='../assets/img/genel/thumbs-grid-noimageall.webp';">
+                                                                    </td>
+                                <td>2021-09-02 15:05:55<br><small>2021-09-02 15:05:55</small></td>
+                                <td class="text-center">
+                                                                        <span class="badge badge-success" style="font-size: 12px;"> Onaylı</span>
+                                                                    </td>
+                                <td>Satılık Bas Gitar <br> <small>İkinci El ve Sıfır Alışveriş /                                                                                                                        Müzik                                        /
+                                                                                                                        Müzik Aletleri                                        </small></td>
+                                <td class="text-center">₺2,750.0</td>
+                                <td class="text-center">
+                                    <form action="" method="POST">
+                                        <a target="_balnk" href="../ilan-detay/729/satilik-bas-gitar" title="Göster" class="btn btn-sm btn-warning"><i
+                                                class="fa fa-external-link"></i></a>
+                                        <a href="ilan-duzenle.php?ilan_id=729" title="Düzenle" class="btn btn-sm btn-success"><i
+                                                class="fa fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="729">
+                                        <input type="hidden" name="sayfa" value="ilanlar.php">
+                                        <button class="btn btn-sm btn-danger" type="submit" name="ilansil" title="Sil" style="cursor: pointer;"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-center">
+                                                                        <img style="height: 40px;width: auto;" src="../assets/img/ilan/21/09/thumbs_grid/15-23509.webp"
+                                        onError="this.src='../assets/img/genel/thumbs-grid-noimageall.webp';">
+                                                                    </td>
+                                <td>2021-09-02 15:05:55<br><small>2021-09-02 15:05:55</small></td>
+                                <td class="text-center">
+                                                                        <span class="badge badge-success" style="font-size: 12px;"> Onaylı</span>
+                                                                    </td>
+                                <td>Satılık Led TV <br> <small>İkinci El ve Sıfır Alışveriş /                                                                                Ev Elektronigi                                        /
+                                                                                                                        Televizyon                                         /
+                                                                                                                        LED TV                                         </small></td>
+                                <td class="text-center">₺4,750.0</td>
+                                <td class="text-center">
+                                    <form action="" method="POST">
+                                        <a target="_balnk" href="../ilan-detay/728/satilik-led-tv" title="Göster" class="btn btn-sm btn-warning"><i
+                                                class="fa fa-external-link"></i></a>
+                                        <a href="ilan-duzenle.php?ilan_id=728" title="Düzenle" class="btn btn-sm btn-success"><i
+                                                class="fa fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="728">
+                                        <input type="hidden" name="sayfa" value="ilanlar.php">
+                                        <button class="btn btn-sm btn-danger" type="submit" name="ilansil" title="Sil" style="cursor: pointer;"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-center">
+                                                                        <img style="height: 40px;width: auto;" src="../assets/img/ilan/21/09/thumbs_grid/14-21930.webp"
+                                        onError="this.src='../assets/img/genel/thumbs-grid-noimageall.webp';">
+                                                                    </td>
+                                <td>2021-09-02 15:05:55<br><small>2021-09-02 15:05:55</small></td>
+                                <td class="text-center">
+                                                                        <span class="badge badge-success" style="font-size: 12px;"> Onaylı</span>
+                                                                    </td>
+                                <td>Ford Ofroad Rc Aracımız Acil Satılıktır <span class="badge badge-success"> <i class="fa fa-shield"></i> -
+                                        PGS</span>  <br> <small>İkinci El ve Sıfır Alışveriş /                                                                                Hobi / Oyuncak                                        /
+                                                                                                                        RC Model                                        /
+                                                                                                                        Benzinli Araçlar                                        </small></td>
+                                <td class="text-center">₺9,400.0</td>
+                                <td class="text-center">
+                                    <form action="" method="POST">
+                                        <a target="_balnk" href="../ilan-detay/727/ford-ofroad-rc-aracimiz-acil-satiliktir" title="Göster" class="btn btn-sm btn-warning"><i
+                                                class="fa fa-external-link"></i></a>
+                                        <a href="ilan-duzenle.php?ilan_id=727" title="Düzenle" class="btn btn-sm btn-success"><i
+                                                class="fa fa-edit"></i></a>
+                                        <input type="hidden" name="id" value="727">
+                                        <input type="hidden" name="sayfa" value="ilanlar.php">
+                                        <button class="btn btn-sm btn-danger" type="submit" name="ilansil" title="Sil" style="cursor: pointer;"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                                                    </tbody>
+                    </table>
+                    <div class="col-xs-12 col-md-12" style="padding-left:0; margin-top:20px;">
+                        <nav aria-label="...">
+                            <ul class="pagination">
+                                                                <li class="page-item active">
+                                    <a class="page-link" href="?sayfa=1">1 <span class="sr-only">(current)</span></a>
+                                </li>
+                                                                <li class="page-item">
+                                    <a class="page-link" href="?sayfa=2">2 <span class="sr-only">(current)</span></a>
+                                </li>
+                                                                <li class="page-item">
+                                    <a class="page-link" href="?sayfa=3">3 <span class="sr-only">(current)</span></a>
+                                </li>
+                                                                <li class="page-item">
+                                    <a class="page-link" href="?sayfa=2">></a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?sayfa=74">>></a>
+                                </li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+    <span>Copyright &copy; 2017 <b>YÖNETİM</b>PANELİ</span>
+</footer>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71958235-16"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+gtag('js', new Date());
+gtag('config', 'UA-71958235-16');
+</script>
+</section>
+<script src="assets/lib/jquery/dist/jquery.min.js"></script>
+<script src="assets/lib/bootstrap/js/popper.min.js"></script>
+<script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=" type="text/javascript"></script>
+<script src="../assets/js/adminMain.js"></script>
+<script src="assets/lib/pace/pace.min.js"></script>
+<script src="assets/lib/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
+<script src="assets/lib/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/lib/nano-scroll/jquery.nanoscroller.min.js"></script>
+<script src="assets/lib/metisMenu/metisMenu.min.js"></script>
+<script src="assets/js/custom.js"></script>
+<script src="assets/js/jscolor.js"></script>
+<script src="assets/dropzone/dropzone.js"></script>
+<!--Chart Script-->
+<script src="assets/lib/chartJs/Chart.min.js"></script>
+<script src="assets/lib/lightbox2/dist/js/lightbox.min.js"></script>
+<!--Vetor Map Script-->
+<script src="assets/lib/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="assets/lib/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="assets/lib/radial-charts/jquery.knob.js"></script>
+<script src="assets/lib/radial-charts/jquery.easypiechart.js"></script>
+<script src="assets/js/radial.custom.js"></script>
+<!-- Datatables-->
+<script src="assets/lib/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/lib/datatables/dataTables.responsive.min.js"></script>
+<script src="assets/lib/datatables/dataTables.buttons.min.js"></script>
+<script src="assets/lib/datatables/jszip.min.js"></script>
+<script src="assets/lib/datatables/pdfmake.min.js"></script>
+<script src="assets/lib/datatables/vfs_fonts.js"></script>
+<script src="assets/lib/datatables/buttons.html5.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#hide").click(function() {
+        $("#icerik").toggle(750);
+        $("#iceriksakla").toggle(750);
+    });
+});
+</script>
+<script>
+$(document).ready(function() {
+    $('#datatable2').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+    $('#datatable20').DataTable({
+        dom: 'Bfrtip',
+        ordering: false,
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+    $('#tableIlan').DataTable({
+        paging: false,
+        "scrollX": true,
+        "info": false,
+        searching: false,
+        "autoWidth": false,
+        scrollCollapse: true
+    });
+});
+</script>
+<script>
+$(document).ready(function() {
+    $('#datatable1').dataTable();
+});
+</script>
+<!-- Summernote -->
+<script src="assets/lib/summernote/summernote.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.summernote').summernote({
+        height: '300px',
+    });
+});
+</script>
+<script>
+CKEDITOR.replace('editor');
+</script>
+<!--Sweet Alerts-->
+<script src="assets/lib/sweet-alerts2/sweetalert2.min.js"></script>
+</body>
+
+</html>
+<script>
+$(document).ready(function() {
+    $("#adLink").keyup(function() {
+        clearInput($(this).attr('id'));
+    });
+    $("#adLink").focusout(function() {
+        clearInput($(this).attr('id'));
+    });
+    $(".bildirimsil").on("click", function() {
+        var bildirim = $(this).attr('data-id');
+        $.ajax({
+            url: "../assets/ajax/bildirim.php",
+            type: "POST",
+            data: {
+                xid: bildirim,
+            },
+        });
+    });
+});
+
+function clearInput(id) {
+    var charMap = {
+        Ç: 'c',
+        Ö: 'o',
+        Ş: 's',
+        İ: 'i',
+        I: 'i',
+        Ü: 'u',
+        Ğ: 'g',
+        ç: 'c',
+        ö: 'o',
+        ş: 's',
+        ı: 'i',
+        ü: 'u',
+        ğ: 'g'
+    };
+    var str = $("#" + id).val();
+    str_array = str.split('');
+    for (var i = 0, len = str_array.length; i < len; i++) {
+        str_array[i] = charMap[str_array[i]] || str_array[i];
+    }
+    str = str_array.join('');
+    var clearStr = str.replace(/ /gi, "-").replace(/--/gi, "-").replace(/---/gi, "-").replace(/----/gi, "-").replace(/-----/gi, "-").replace(/[^a-z0-9-.çöşüğı]/gi, "").replace(
+        "--", "-").toLowerCase()
+    $("#urlLink").val(clearStr);
+}
+</script>
